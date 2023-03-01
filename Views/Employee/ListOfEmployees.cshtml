@@ -1,0 +1,147 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<MeetingRoom1.Models.EmployeeModel>
+
+@{
+    ViewData["Title"] = "ListOfEmployees";
+}
+
+
+
+<h1>ListOfEmployees</h1>
+<link href="~/css/Dashboard.css" rel="stylesheet" />
+<link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/ListOfEmployee.css" />
+
+
+<div class="container">
+  <input id="menu__toggle" type="checkbox" />
+  <label class="menu__btn" for="menu__toggle">
+    <span></span>
+  </label>
+  <nav class="sidebar">
+    <header>
+      <div class="image-text">
+      
+        <div class="text logo-text">
+
+         <span class="name">Hello @Context.Session.GetString("Email")</span>
+          
+        </div>
+      </div>
+
+      @*<i class='bx bx-chevron-right toggle'></i>*@
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+        <li class="search-box">
+          <i class='bx bx-search icon'></i>
+          <input type="text" placeholder="Search...">
+        </li>
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="https://localhost:44322/Employee/AdminView">
+              <i class='bx bx-bar-chart-alt-2 icon'></i>
+              <span class="text nav-text">EmployeesList</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-bell icon'></i>
+              <span class="text nav-text">Notifications</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-pie-chart-alt icon'></i>
+              <span class="text nav-text">Analytics</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-wallet icon'></i>
+              <span class="text nav-text">Wallets</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a href="#">
+            <i class='bx bx-log-out icon'></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+
+        <li class="mode">
+          <div class="sun-moon">
+            <i class='bx bx-moon icon moon'></i>
+            <i class='bx bx-sun icon sun'></i>
+          </div>
+          <span class="mode-text text">Dark mode</span>
+
+          <div class="toggle-switch">
+            <span class="switch"></span>
+          </div>
+        </li>
+
+      </div>
+    </div>
+
+  </nav>
+
+  <section class="home">
+      <div class="text">
+    <div>
+    <h4>EmployeesList</h4>
+    <hr />
+   
+    <table class="row" >
+        <tr class="table-headers">
+             <th style="border:1px solid black;width:5vw;">@Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th style="border:1px solid black;width:5vw;">@Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th style="border:1px solid black;width:5vw;">@Html.DisplayNameFor(model => model.BranchName)
+            </th>
+                       
+        </tr>
+        @foreach (var item in Model) {
+        <tr>
+             <td style="border:1px solid black">@Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td style="border:1px solid black;width:5vw;">@Html.DisplayFor(modelItem => item.Email)
+            </td>  
+            <td style="border:1px solid black;width:5vw;">@Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+           
+        </tr>
+        }
+    </table>
+</div>
+ </div>
+  </section>  
+</div>
+<script src="~/js/site.js">
+</script>
+
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
