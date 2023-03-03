@@ -123,4 +123,40 @@ as
 Begin      
     select *from tbl_EmployeeReg  	
 End 
+
 Go
+Create or alter procedure [dbo].[spGetAllMeetingRooms](@BranchName varchar(255))     
+as      
+Begin      
+    select * from tbl_MeetingRoomAvailability where BranchName = @BranchName 	
+End 
+
+Go
+Create or alter procedure [dbo].[spGetAllRequests]   
+as      
+Begin      
+    select *from tbl_MeetingRequest  	
+End 
+
+GO
+ALTER procedure [dbo].[spUpdateStatus]          
+
+(  
+
+@MeetingRoom_Id int,
+
+@ReqStatus varchar(200)
+
+)          
+
+as          
+
+begin          
+
+   Update tbl_MeetingRequest           
+
+   set ReqStatus=@ReqStatus 
+
+   where MeetingRoom_Id=@MeetingRoom_Id          
+
+End

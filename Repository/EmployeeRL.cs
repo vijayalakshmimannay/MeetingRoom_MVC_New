@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -283,8 +284,11 @@ namespace MeetingRoom1.Repository
                             Purpose = reader["Purpose"].ToString(),
                             RequestFor = reader["RequestFor"].ToString(),
                             NoOfEmps = Convert.ToInt32(reader["NoOfEmps"]),
+                            Status = reader["ReqStatus"].ToString(),
+                            Request_Id = Convert.ToInt32(reader["Request_Id"]),
 
-                        });                 }
+                        });                
+                    }
                     return requestmodel;
                 }
                 else
@@ -305,6 +309,7 @@ namespace MeetingRoom1.Repository
 
         }
 
+       
 
     }
     

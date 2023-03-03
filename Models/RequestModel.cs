@@ -13,6 +13,9 @@ namespace MeetingRoom1.Models
         public string Purpose { get; set; }
         public string RequestFor { get; set; }
         public int NoOfEmps { get; set; }
+
+        public string Status { get; set; }
+        public int Request_Id { get; set; }
     }
    
 }
