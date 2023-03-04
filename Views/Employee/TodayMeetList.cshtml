@@ -1,10 +1,11 @@
-﻿
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @model IEnumerable<MeetingRoom1.Models.RequestModel>
 
+
 @{
-    ViewData["Title"] = "BranchManagerView";
+    ViewData["Title"] = "TodayMeetList";
 }
+
 <head><link rel="stylesheet" href="~/css/ListOfEmployee.css" />
 <style>
 .dropbtn {
@@ -44,11 +45,17 @@
 </style>
 </head>
 
-<h1>BranchManagerView</h1>
+
+<h1>TodayMeetList</h1>
+
+
+
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
 <h1>BranchManagerView</h1>
 <link href="~/css/Dashboard.css" rel="stylesheet" />
 <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
@@ -73,7 +80,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
       
         <div class="text logo-text">
 
-         <span class="name">HelloManager <br>@Context.Session.GetString("Email")</span>
+         <span class="name">HelloAdmin <br>@Context.Session.GetString("Email")</span>
           
         </div>
       </div>
@@ -104,27 +111,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
             </a>
           </li>
 
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-bell icon'></i>
-              <span class="text nav-text">Notifications</span>
-            </a>
-          </li>
-
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-pie-chart-alt icon'></i>
-              <span class="text nav-text">Analytics</span>
-            </a>
-          </li>
-
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-wallet icon'></i>
-              <span class="text nav-text">Wallets</span>
-            </a>
-          </li>
-
+          
         </ul>
       </div>
 
@@ -230,7 +217,6 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
                                   
            </td>
 
-          
 
         </tr>
         }
@@ -242,4 +228,3 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
 </div>
 <script src="~/js/site.js">
 </script>
-

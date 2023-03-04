@@ -123,4 +123,52 @@ as
 Begin      
     select *from tbl_EmployeeReg  	
 End 
+
 Go
+Create or alter procedure [dbo].[spGetAllMeetingRooms](@BranchName varchar(255))     
+as      
+Begin      
+    --select * from tbl_MeetingRoomAvailability  
+	select tbl_MeetingRoomAvailability.MeetingRoom_Id,tbl_MeetingRoomAvailability.FloorNo,tbl_MeetingRoomAvailability.RoomNo,tbl_MeetingRoomAvailability.Desktops,
+ tbl_MeetingRoomAvailability.Projectors,tbl_MeetingRoomAvailability.Capacity,tbl_MeetingRoomAvailability.BranchName,tbl_MeetingRequest.ReqStatus from tbl_MeetingRoomAvailability
+inner join tbl_MeetingRequest on  tbl_MeetingRoomAvailability.MeetingRoom_Id = tbl_MeetingRequest.MeetingRoom_Id where BranchName = @BranchName
+End 
+
+Go
+Create or alter procedure [dbo].[spGetAllRequests]   
+as      
+Begin      
+    select *from tbl_MeetingRequest  	
+End 
+
+GO
+ALTER procedure [dbo].[spUpdateStatus]          
+
+(  
+
+@MeetingRoom_Id int,
+
+@ReqStatus varchar(200)
+
+)          
+
+as          
+
+begin          
+
+   Update tbl_MeetingRequest           
+
+   set ReqStatus=@ReqStatus 
+
+   where MeetingRoom_Id=@MeetingRoom_Id          
+
+End
+
+
+ select * from tbl_MeetingRoomAvailability
+
+ select *from tbl_MeetingRequest
+
+ select tbl_MeetingRoomAvailability.MeetingRoom_Id,tbl_MeetingRoomAvailability.FloorNo,tbl_MeetingRoomAvailability.RoomNo,tbl_MeetingRoomAvailability.Desktops,
+ tbl_MeetingRoomAvailability.Projectors,tbl_MeetingRoomAvailability.Capacity,tbl_MeetingRoomAvailability.BranchName,tbl_MeetingRequest.ReqStatus from tbl_MeetingRoomAvailability
+inner join tbl_MeetingRequest on  tbl_MeetingRoomAvailability.MeetingRoom_Id = tbl_MeetingRequest.Request_Id;

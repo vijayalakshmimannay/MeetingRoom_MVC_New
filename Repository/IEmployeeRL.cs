@@ -12,6 +12,8 @@ namespace MeetingRoom1.Repository
         public RequestModel AddRequest(RequestModel employee, int UserId, int MeetingRoom_Id);
         public IEnumerable<EmployeeModel> GetAllEmployees();
         public IEnumerable<RequestModel> GetAllRequests();
+        public IEnumerable<RequestModel> TodayMeetList(string MDate);
+        public IEnumerable<RequestModel> GetAllMeetingRooms_Admiin();
     }
         
 }

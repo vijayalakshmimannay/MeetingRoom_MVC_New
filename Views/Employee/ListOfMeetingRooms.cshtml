@@ -152,6 +152,8 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
             </th>
             <th style="border:1px solid black;width:5vw;">@Html.DisplayNameFor(model => model.BranchName)
             </th>
+             <th style="border:1px solid black;width:5vw;">@Html.DisplayNameFor(model => model.Status)
+            </th>
             <th style="border:1px solid black;width:5vw;">Button</th>
         </tr>
         @foreach (var item in Model) {
@@ -170,7 +172,23 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
             </td>
               <td style="border:1px solid black;width:5vw;">@Html.DisplayFor(modelItem => item.BranchName)
             </td>
-            <td style="border:1px solid black;width:5vw;"><a href="@Url.Action("AddRequest", new { id=item.MeetingRoom_Id })">Request</a></td>
+             <td style="border:1px solid black;width:5vw;">@Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td style="border:1px solid black;width:5vw;">
+                <a href="@Url.Action("AddRequest", new { id=item.MeetingRoom_Id })">Request</a>
+                                    @{
+                                        if (item.Status == "Rejected")
+                                        {
+                                            <p>Rejected</p>
+                                        }
+                                        else if (item.Status == "Accepted")  
+                                        {
+                                                <p>Accepted</p>
+                                    }
+                                    
+                                    }
+            </td>
+            
            
         </tr>
         }

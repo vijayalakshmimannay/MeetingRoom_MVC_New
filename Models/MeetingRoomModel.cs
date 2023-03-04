@@ -10,6 +10,7 @@
         public int Capacity { get; set; }
 
         public string BranchName { get; set; }
-
+        public string Status { get; set; }
+        public int Request_Id { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -155,6 +156,7 @@ namespace MeetingRoom1.Repository
                            Projectors = Convert.ToInt32(reader["Projectors"]),
                            Capacity = Convert.ToInt32(reader["Capacity"]),
                            BranchName = reader["BranchName"].ToString(),
+                           Status = reader["ReqStatus"].ToString(),
                        });
                     }
                     return meetingroomlist;
@@ -283,8 +285,11 @@ namespace MeetingRoom1.Repository
                             Purpose = reader["Purpose"].ToString(),
                             RequestFor = reader["RequestFor"].ToString(),
                             NoOfEmps = Convert.ToInt32(reader["NoOfEmps"]),
+                            Status = reader["ReqStatus"].ToString(),
+                            Request_Id = Convert.ToInt32(reader["Request_Id"]),
 
-                        });                 }
+                        });                
+                    }
                     return requestmodel;
                 }
                 else
@@ -301,6 +306,113 @@ namespace MeetingRoom1.Repository
             {
                 sqlConnection.Close();
             }
+
+
+        }
+
+
+        public IEnumerable<RequestModel> TodayMeetList(string MDate)
+        {
+
+            sqlConnection = new SqlConnection(dbpath);
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_GetTodayMeetList ", sqlConnection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                sqlConnection.Open();
+                command.Parameters.AddWithValue("@MDate", MDate);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        requestmodel.Add(new RequestModel
+                        {
+                            UserId = Convert.ToInt32(reader["UserId"]),
+                            Id = Convert.ToInt32(reader["MeetingRoom_Id"]),
+                            StartTime = reader["StartTime"].ToString(),
+                            EndTime = reader["EndTime"].ToString(),
+                            MDate = reader["MDate"].ToString(),
+                            Purpose = reader["Purpose"].ToString(),
+                            RequestFor = reader["RequestFor"].ToString(),
+                            NoOfEmps = Convert.ToInt32(reader["NoOfEmps"]),
+                            Status = reader["ReqStatus"].ToString(),
+                            Request_Id = Convert.ToInt32(reader["Request_Id"]),
+
+                        });
+                    }
+                    return requestmodel;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+
+        }
+
+        public IEnumerable<RequestModel> GetAllMeetingRooms_Admiin()
+        {
+
+            sqlConnection = new SqlConnection(dbpath);
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_GetAllMeetingRoomRequests", sqlConnection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                sqlConnection.Open();
+               
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        requestmodel.Add(new RequestModel
+                        {
+                            UserId = Convert.ToInt32(reader["UserId"]),
+                            Id = Convert.ToInt32(reader["MeetingRoom_Id"]),
+                            StartTime = reader["StartTime"].ToString(),
+                            EndTime = reader["EndTime"].ToString(),
+                            MDate = reader["MDate"].ToString(),
+                            Purpose = reader["Purpose"].ToString(),
+                            RequestFor = reader["RequestFor"].ToString(),
+                            NoOfEmps = Convert.ToInt32(reader["NoOfEmps"]),
+                            Status = reader["ReqStatus"].ToString(),
+                            Request_Id = Convert.ToInt32(reader["Request_Id"]),
+
+                        });
+                    }
+                    return requestmodel;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
 
 
         }

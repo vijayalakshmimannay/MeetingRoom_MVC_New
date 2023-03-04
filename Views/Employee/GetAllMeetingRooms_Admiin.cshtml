@@ -1,10 +1,10 @@
-﻿
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @model IEnumerable<MeetingRoom1.Models.RequestModel>
 
 @{
-    ViewData["Title"] = "BranchManagerView";
+    ViewData["Title"] = "GetAllMeetingRooms_Admiin";
 }
+
 <head><link rel="stylesheet" href="~/css/ListOfEmployee.css" />
 <style>
 .dropbtn {
@@ -43,13 +43,7 @@
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
 </head>
-
-<h1>BranchManagerView</h1>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
-<h1>BranchManagerView</h1>
+<h1>GetAllMeetingRooms_Admiin</h1>
 <link href="~/css/Dashboard.css" rel="stylesheet" />
 <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
@@ -73,7 +67,7 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
       
         <div class="text logo-text">
 
-         <span class="name">HelloManager <br>@Context.Session.GetString("Email")</span>
+         <span class="name">HelloAdmin <br>@Context.Session.GetString("Email")</span>
           
         </div>
       </div>
@@ -98,32 +92,15 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
           </li>
 
           <li class="nav-link">
-            <a href="https://localhost:44322/Employee/BranchManagerView">
+            <a href="https://localhost:44322/Employee/GetAllMeetingRooms_Admiin">
               <i class='bx bx-bar-chart-alt-2 icon'></i>
               <span class="text nav-text">EmployeeRequests</span>
             </a>
           </li>
 
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-bell icon'></i>
-              <span class="text nav-text">Notifications</span>
-            </a>
-          </li>
+         
 
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-pie-chart-alt icon'></i>
-              <span class="text nav-text">Analytics</span>
-            </a>
-          </li>
-
-          <li class="nav-link">
-            <a href="#">
-              <i class='bx bx-wallet icon'></i>
-              <span class="text nav-text">Wallets</span>
-            </a>
-          </li>
+          
 
         </ul>
       </div>
@@ -229,8 +206,9 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
                                 }
                                   
            </td>
+            <td style="border:1px solid black;width:5vw;"><a href="@Url.Action("TodayMeetList", new { id=item.MDate })">DayReport</a>
+            </td>
 
-          
 
         </tr>
         }
@@ -242,4 +220,3 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
 </div>
 <script src="~/js/site.js">
 </script>
-
